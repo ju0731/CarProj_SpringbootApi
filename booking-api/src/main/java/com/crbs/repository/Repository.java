@@ -1,5 +1,5 @@
 package com.crbs.repository;
 
-public interface Reposity {
+public interface Repository {
 
 }
