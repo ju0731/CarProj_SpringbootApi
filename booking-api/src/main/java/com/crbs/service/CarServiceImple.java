@@ -25,4 +25,13 @@ public class CarServiceImple implements CarService {
 		}
 		return car;
 	}
+	
+	@Override
+	public int registerCarInfo(Car car) {
+		int result = carDao.insertCarInfo(car);
+		if(result == 1)
+			return 1;
+		else
+			return 0;
+	}
 }
