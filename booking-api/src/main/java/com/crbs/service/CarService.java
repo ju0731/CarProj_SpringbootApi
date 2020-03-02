@@ -8,4 +8,5 @@ public interface CarService {
 	List<Car> showAvailableCarList();
 	
 	int registerCarInfo(Car car);
+
 }
