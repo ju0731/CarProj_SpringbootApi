@@ -22,6 +22,7 @@ public class CarSelectionMapper implements RowMapper<Car> {
 		c.setFuel(rs.getString("fuel"));
 		c.setDisplacement(rs.getInt("displacement"));
 		c.setSize(rs.getString("size"));
+		c.setImageUrl(rs.getString("imageurl"));
 		
 		return c;
 	}

@@ -9,11 +9,12 @@ public class Car {
 	String fuel;
 	int displacement;
 	String size;
+	String imageUrl;
 	
 	public Car() {}
 
 	public Car(String code, String name, int price, int flag, String color, String fuel,
-			int displacement, String size) {
+			int displacement, String size, String imageUrl) {
 		this.code = code;
 		this.name = name;
 		this.price = price;
@@ -22,6 +23,7 @@ public class Car {
 		this.fuel = fuel;
 		this.displacement = displacement;
 		this.size = size;
+		this.imageUrl = imageUrl;
 	}
 
 	public String getCode() {
@@ -87,7 +89,12 @@ public class Car {
 	public void setSize(String size) {
 		this.size = size;
 	}
-	
-	
-	
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
 }
