@@ -38,10 +38,10 @@ public class CrbsController {
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 				List<Car> car = carService.showAvailableCarList();
-				int cntList = carService.getNumOfAvailableCar();
+				int cntListItem = carService.getNumOfAvailableCar();
 				HashMap<String, Object> hashmap = new HashMap<>();
 				hashmap.put("car", car);
-				hashmap.put("cntList", cntList);
+				hashmap.put("cntListItem", cntListItem);
 		if (car == null) {
 			return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
 		}
