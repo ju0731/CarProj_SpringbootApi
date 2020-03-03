@@ -9,4 +9,6 @@ public interface CarRepository {
 	
 	int insertCarInfo(Car car); 
 	
+	int deleteCarInfoByCode(String code);
+	
 }

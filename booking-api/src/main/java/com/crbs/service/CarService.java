@@ -9,4 +9,5 @@ public interface CarService {
 	
 	int registerCarInfo(Car car);
 
+	int removeCarInfoByCode(String code);
 }

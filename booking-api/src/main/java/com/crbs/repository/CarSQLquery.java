@@ -5,4 +5,5 @@ public class CarSQLquery {
 
 	public static final String INSERT_CAR_INFO = "insert into CAR (CODE, NAME, PRICE, FLAG, COLOR, FUEL, DISPLACEMENT, SIZE, IMAGEURL) values (?,?,?,?,?,?,?,?,?)";
 
+	public static final String DELETE_CAR_INFO = "delete from CAR where code = ?";
 }

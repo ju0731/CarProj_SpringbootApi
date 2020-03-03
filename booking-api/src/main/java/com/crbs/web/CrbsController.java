@@ -9,6 +9,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,6 +68,20 @@ public class CrbsController {
 			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST); 
 		}  
 		return new ResponseEntity<Car>(car, headers, HttpStatus.CREATED); 
+	}
+	
+	@CrossOrigin(origins="*")
+	@RequestMapping(value = "/admin/{code}", method = RequestMethod.DELETE)
+	public ResponseEntity<Integer> deleteCarInfo(@PathVariable("code") String code) {
+		logger.info("deleteCarInfo() controller called");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Origin", "*");
+		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+		int i = carService.removeCarInfoByCode(code);
+		if (i == 0) {
+			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Integer>(i, headers,HttpStatus.OK);
 	}
 	
 	@CrossOrigin(origins="*")

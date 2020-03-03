@@ -23,4 +23,9 @@ public class CarRepositoryImple implements CarRepository {
 	public int insertCarInfo(Car car) {
 		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getFlag(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl());
 	}
+	
+	@Override
+	public int deleteCarInfoByCode(String code) {
+		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO, code);
+	}
 }
