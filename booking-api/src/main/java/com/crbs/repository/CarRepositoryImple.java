@@ -26,6 +26,6 @@ public class CarRepositoryImple implements CarRepository {
 	
 	@Override
 	public int deleteCarInfoByCode(String code) {
-		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO, code);
+		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO_BY_CODE, code);
 	}
 }

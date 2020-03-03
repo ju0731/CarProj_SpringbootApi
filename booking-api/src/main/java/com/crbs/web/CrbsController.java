@@ -61,6 +61,7 @@ public class CrbsController {
 		headers.add("A post Created - " , String.valueOf(car.getDisplacement()));
 		headers.add("A post Created - " , String.valueOf(car.getSize()));
 		headers.add("A post Created - " , String.valueOf(car.getImageUrl()));
+		headers.add("A post Created - " , String.valueOf(car.getCnt()));
 
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");

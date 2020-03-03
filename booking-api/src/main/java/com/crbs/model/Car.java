@@ -10,6 +10,7 @@ public class Car {
 	int displacement;
 	String size;
 	String imageUrl;
+	int cnt;
 	
 	public Car() {}
 
@@ -24,6 +25,7 @@ public class Car {
 		this.displacement = displacement;
 		this.size = size;
 		this.imageUrl = imageUrl;
+		this.cnt = cnt;
 	}
 
 	public String getCode() {
@@ -97,4 +99,13 @@ public class Car {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
 }

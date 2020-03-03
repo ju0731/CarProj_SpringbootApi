@@ -1,5 +1,6 @@
 #encoding
-#database : cmd window -> C:\Program Files\MySQL\MySQL Server 8.0\bin -> mysql -u publicdb -p
+#database : ssh 접속 - ubuntu@52.78.161.155
+#database : mysql -h devops-rds.c7iudllookzy.ap-northeast-2.rds.amazonaws.com -u master -p
 #static resources
 
 spring:
