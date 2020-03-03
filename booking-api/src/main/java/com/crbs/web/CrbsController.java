@@ -55,7 +55,6 @@ public class CrbsController {
 		headers.add("A post Created - " , String.valueOf(car.getCode()));
 		headers.add("A post Created - " , String.valueOf(car.getName()));
 		headers.add("A post Created - " , String.valueOf(car.getPrice()));
-		headers.add("A post Created - " , String.valueOf(car.getFlag()));
 		headers.add("A post Created - " , String.valueOf(car.getColor()));
 		headers.add("A post Created - " , String.valueOf(car.getFuel()));
 		headers.add("A post Created - " , String.valueOf(car.getDisplacement()));
