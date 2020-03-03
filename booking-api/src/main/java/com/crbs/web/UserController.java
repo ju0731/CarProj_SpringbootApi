@@ -17,7 +17,7 @@ import com.crbs.model.User;
 import com.crbs.service.UserService;
 
 @RestController
-@RequestMapping("/users/")
+@RequestMapping("/v0.0.3/crbs/users")
 public class UserController {
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
