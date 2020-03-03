@@ -4,26 +4,26 @@ public class Car {
 	String code;
 	String name;
 	int price;
-	int flag; // 해당 차량이 현재 대여 가능한지 여부 (T/F)
 	String color;
 	String fuel;
 	int displacement;
 	String size;
 	String imageUrl;
+	int cnt;
 	
 	public Car() {}
 
-	public Car(String code, String name, int price, int flag, String color, String fuel,
-			int displacement, String size, String imageUrl) {
+	public Car(String code, String name, int price, String color, String fuel,
+			int displacement, String size, String imageUrl, int cnt) {
 		this.code = code;
 		this.name = name;
 		this.price = price;
-		this.flag = flag;
 		this.color = color;
 		this.fuel = fuel;
 		this.displacement = displacement;
 		this.size = size;
 		this.imageUrl = imageUrl;
+		this.cnt = cnt;
 	}
 
 	public String getCode() {
@@ -48,14 +48,6 @@ public class Car {
 
 	public void setPrice(int price) {
 		this.price = price;
-	}
-
-	public int getFlag() {
-		return flag;
-	}
-
-	public void setFlag(int flag) {
-		this.flag = flag;
 	}
 
 	public String getColor() {
@@ -97,4 +89,13 @@ public class Car {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
 }

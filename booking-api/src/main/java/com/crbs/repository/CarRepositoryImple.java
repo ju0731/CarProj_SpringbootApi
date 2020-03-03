@@ -20,12 +20,22 @@ public class CarRepositoryImple implements CarRepository {
 	}
 	
 	@Override
+	public int getNumOfAvailableCar() {
+		return this.jdbcTemplate.queryForObject(CarSQLquery.SELECT_CNT_AVAILABLE_CAR, int.class);
+	}
+	
+	@Override
 	public int insertCarInfo(Car car) {
-		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getFlag(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl());
+		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
 	}
 	
 	@Override
 	public int deleteCarInfoByCode(String code) {
-		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO, code);
+		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO_BY_CODE, code);
+	}
+	
+	@Override
+	public int updateCarInfoByCode(Car car, String code) {
+		return this.jdbcTemplate.update(CarSQLquery.UPDATE_CAR_INFO_BY_CODE, car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt(), code);
 	}
 }

@@ -17,12 +17,12 @@ public class CarSelectionMapper implements RowMapper<Car> {
 		c.setCode(rs.getString("code"));
 		c.setName(rs.getString("name"));
 		c.setPrice(rs.getInt("price"));
-		c.setFlag(rs.getInt("flag"));
 		c.setColor(rs.getString("color"));
 		c.setFuel(rs.getString("fuel"));
 		c.setDisplacement(rs.getInt("displacement"));
 		c.setSize(rs.getString("size"));
 		c.setImageUrl(rs.getString("imageurl"));
+		c.setCnt(rs.getInt("cnt"));
 		
 		return c;
 	}

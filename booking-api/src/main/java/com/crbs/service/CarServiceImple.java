@@ -25,6 +25,12 @@ public class CarServiceImple implements CarService {
 		}
 		return car;
 	}
+	
+	@Override
+	public int getNumOfAvailableCar() {
+		int result = carDao.getNumOfAvailableCar();
+		return result;
+	}
 
 	@Override
 	public int registerCarInfo(Car car) {
@@ -44,5 +50,10 @@ public class CarServiceImple implements CarService {
 			i = 0;
 		}
 		return i;
+	}
+	
+	@Override
+	public void renewCarInfoByCode(Car car, String code) {
+		carDao.updateCarInfoByCode(car, code);
 	}
 }
