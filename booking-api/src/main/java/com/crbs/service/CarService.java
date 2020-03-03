@@ -6,4 +6,8 @@ import com.crbs.model.Car;
 
 public interface CarService {
 	List<Car> showAvailableCarList();
+	
+	int registerCarInfo(Car car);
+
+	int removeCarInfoByCode(String code);
 }

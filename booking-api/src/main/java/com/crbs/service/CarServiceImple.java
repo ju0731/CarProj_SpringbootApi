@@ -14,7 +14,7 @@ public class CarServiceImple implements CarService {
 
 	@Autowired
 	private CarRepositoryImple carDao;
-	
+
 	@Override
 	public List<Car> showAvailableCarList() {
 		List<Car> car;
@@ -24,5 +24,25 @@ public class CarServiceImple implements CarService {
 			car = new ArrayList<Car>();
 		}
 		return car;
+	}
+
+	@Override
+	public int registerCarInfo(Car car) {
+		int result = carDao.insertCarInfo(car);
+		if (result == 1)
+			return 1;
+		else
+			return 0;
+	}
+
+	@Override
+	public int removeCarInfoByCode(String code) {
+		int i;
+		try {
+			i = carDao.deleteCarInfoByCode(code);
+		} catch (Exception e) {
+			i = 0;
+		}
+		return i;
 	}
 }
