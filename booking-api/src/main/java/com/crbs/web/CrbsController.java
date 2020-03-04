@@ -96,9 +96,7 @@ public class CrbsController {
 	
 	@CrossOrigin(origins="*")
 	@RequestMapping(value = "/admin/{code}", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<Car> updateCarInfo(@PathVariable("code") String code, @RequestBody Car car) { 	
-		// Get a Board Object through RequestBody annotation
-		// ResponseEntity 타입을 Integer -> Board로 변경																						
+	public ResponseEntity<Car> updateCarInfo(@PathVariable("code") String code, @RequestBody Car car) { 																					
 		logger.info("udpateBoard() controller called");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Origin", "*");
