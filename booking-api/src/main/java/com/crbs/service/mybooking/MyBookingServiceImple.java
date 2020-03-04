@@ -1,4 +1,4 @@
-package com.crbs.service;
+package com.crbs.service.mybooking;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crbs.model.MyBooking;
-import com.crbs.repository.MyBookingRepositoryImple;
+import com.crbs.repository.mybooking.MyBookingRepositoryImple;
 
 @Service
 public class MyBookingServiceImple implements MyBookingService {

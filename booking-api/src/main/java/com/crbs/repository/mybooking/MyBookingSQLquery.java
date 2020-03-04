@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.mybooking;
 
 public class MyBookingSQLquery {
 	//예약 현황

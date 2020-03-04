@@ -1,4 +1,4 @@
-package com.crbs.service;
+package com.crbs.service.mybooking;
 
 import java.util.List;
 

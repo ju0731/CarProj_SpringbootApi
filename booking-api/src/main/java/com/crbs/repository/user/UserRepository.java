@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.user;
 
 import com.crbs.model.User;
 
@@ -12,7 +12,5 @@ public interface UserRepository {
 	
 	//수정
 	int updateUser(String id, User user);
-	
-	//로그인
-	
+
 }

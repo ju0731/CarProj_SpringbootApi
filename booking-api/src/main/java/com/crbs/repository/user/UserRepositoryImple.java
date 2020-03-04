@@ -1,7 +1,11 @@
-package com.crbs.repository;
+package com.crbs.repository.user;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.crbs.model.User;
@@ -27,5 +31,6 @@ public class UserRepositoryImple implements UserRepository{
 	public int updateUser(String id, User user) {
 		return this.jdbcTemplate.update(UserSQLquery.UPDATE_USER, user.getPhonenumber(), id);
 	}
+
 
 }

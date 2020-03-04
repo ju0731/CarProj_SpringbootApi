@@ -1,4 +1,8 @@
-package com.crbs.service;
+package com.crbs.service.user;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
 
 import com.crbs.model.User;
 
@@ -12,4 +16,6 @@ public interface UserService {
 	
 	//수정
 	int updateUser(String id, User user);
+	
+
 }

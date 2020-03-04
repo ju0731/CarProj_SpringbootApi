@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crbs.model.Car;
 import com.crbs.model.Reservation;
-import com.crbs.service.CarService;
-import com.crbs.service.ReservationService;
+import com.crbs.service.car.CarService;
+import com.crbs.service.reservation.ReservationService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs")

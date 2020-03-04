@@ -1,11 +1,16 @@
 package com.crbs.web;
 
+import java.util.HashMap;
+
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crbs.model.User;
-import com.crbs.service.UserService;
+import com.crbs.service.user.UserService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs/users")
@@ -69,5 +74,14 @@ public class UserController {
 		else
 			return new ResponseEntity<String>(id, headers,HttpStatus.CREATED);
 	}
+	
+	
+	/* Admission(Login) 관련 Controller */
+
+	
+	
+	
+	
+	
 	
 }

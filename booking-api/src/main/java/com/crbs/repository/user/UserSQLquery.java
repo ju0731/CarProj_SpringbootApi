@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.user;
 
 public class UserSQLquery {
 
@@ -11,4 +11,7 @@ public class UserSQLquery {
 	//회원정보 수정
 	public static final String UPDATE_USER = "update CUSTOMER set phonenumber = ? where id = ?"; 
 	
+	public static final String SELECT_USER_BY_ID_AND_PASSWORD = "select ID, PASSWORD from CUSTOMER where ID = ? and PASSWORD = ?";
+	
+	public static final String SELECT_USER_BY_ID = "select ID, PASSWORD from CUSTOMER where ID = ?";
 }

@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.reservation;
 
 import com.crbs.model.Reservation;
 
