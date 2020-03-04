@@ -5,17 +5,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.crbs.model.User;
+import com.crbs.security.PasswordEncoding;
 
 @Repository
 public class UserRepositoryImple implements UserRepository{
-
+	
+	PasswordEncoding passwordEncoding = new PasswordEncoding();
+	
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
 	@Override
 	public int insertUser(User user) {
-		return this.jdbcTemplate.update(UserSQLquery.INSERT_USER,user.getId(),user.getName(),user.getPassword(), user.getIsadmin(),user.getPhonenumber());	
-			
+		return this.jdbcTemplate.update(UserSQLquery.INSERT_USER,user.getId(),user.getName(),passwordEncoding.encode(user.getPassword()), user.getIsadmin(),user.getPhonenumber());	
 	}
 
 	@Override
@@ -26,6 +28,11 @@ public class UserRepositoryImple implements UserRepository{
 	@Override
 	public int updateUser(String id, User user) {
 		return this.jdbcTemplate.update(UserSQLquery.UPDATE_USER, user.getPhonenumber(), id);
+	}
+
+	@Override
+	public String findById(String id) {
+		return this.jdbcTemplate.queryForObject(UserSQLquery.FINDBYID, String.class, id);
 	}
 
 }
