@@ -20,6 +20,7 @@ import com.crbs.model.Car;
 import com.crbs.model.Reservation;
 import com.crbs.service.CarService;
 import com.crbs.service.ReservationService;
+import com.crbs.service.UserService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs")
@@ -30,7 +31,9 @@ public class CrbsController {
 	ReservationService reservationService;
 	@Autowired
 	CarService carService;
-
+	@Autowired
+	UserService userService;
+	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<HashMap<String, Object>> getAvailabeCarList() {
 		logger.info("getAvailabeCarList() controller called");
