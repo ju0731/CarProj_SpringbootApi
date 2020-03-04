@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crbs.model.Car;
 import com.crbs.model.Reservation;
-import com.crbs.service.CarService;
-import com.crbs.service.ReservationService;
+import com.crbs.security.JasyptEncDec;
+import com.crbs.service.car.CarService;
+import com.crbs.service.reservation.ReservationService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs")
@@ -39,12 +40,16 @@ public class CrbsController {
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 				List<Car> car = carService.showAvailableCarList();
 				int cntListItem = carService.getNumOfAvailableCar();
+				
+				JasyptEncDec dec = new JasyptEncDec();
+				for(int i = 0; i < cntListItem; i++) {
+					String decryptedCode = dec.decryptText(car.get(i).getCode());
+					car.get(i).setCode(decryptedCode);
+				}
+
 				HashMap<String, Object> hashmap = new HashMap<>();
 				hashmap.put("car", car);
 				hashmap.put("cntListItem", cntListItem);
-		if (car == null) {
-			return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
-		}
 		return new ResponseEntity<HashMap<String, Object>>(hashmap, headers, HttpStatus.OK);
 	}
 	

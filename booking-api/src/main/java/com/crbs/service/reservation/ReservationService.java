@@ -1,4 +1,4 @@
-package com.crbs.service;
+package com.crbs.service.reservation;
 
 import com.crbs.model.Reservation;
 

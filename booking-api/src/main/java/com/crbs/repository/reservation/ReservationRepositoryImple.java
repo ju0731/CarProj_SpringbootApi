@@ -1,10 +1,11 @@
-package com.crbs.repository;
+package com.crbs.repository.reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.crbs.model.Reservation;
+import com.crbs.security.JasyptEncDec;
 
 @Repository
 public class ReservationRepositoryImple implements ReservationRepository {
@@ -14,6 +15,8 @@ public class ReservationRepositoryImple implements ReservationRepository {
 
 	@Override
 	public int insertReservation(Reservation reservation) {
-		return this.jdbcTemplate.update(ReservationSQLquery.INSERT_RESERVATION, reservation.getCustomerId(), reservation.getCarCode(), reservation.getStartDate(), reservation.getEndDate());
+		JasyptEncDec enc = new JasyptEncDec();
+		String encryptedCarCode = enc.encryptText(reservation.getCarCode());
+		return this.jdbcTemplate.update(ReservationSQLquery.INSERT_RESERVATION, reservation.getCustomerId(), encryptedCarCode, reservation.getStartDate(), reservation.getEndDate());
 	}
 }

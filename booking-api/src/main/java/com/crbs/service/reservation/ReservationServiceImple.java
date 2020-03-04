@@ -1,10 +1,10 @@
-package com.crbs.service;
+package com.crbs.service.reservation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crbs.model.Reservation;
-import com.crbs.repository.ReservationRepositoryImple;
+import com.crbs.repository.reservation.ReservationRepositoryImple;
 
 @Service
 public class ReservationServiceImple implements ReservationService {

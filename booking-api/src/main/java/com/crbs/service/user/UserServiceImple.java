@@ -1,10 +1,10 @@
-package com.crbs.service;
+package com.crbs.service.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crbs.model.User;
-import com.crbs.repository.UserRepository;
+import com.crbs.repository.user.UserRepository;
 import com.crbs.security.PasswordEncoding;
 
 

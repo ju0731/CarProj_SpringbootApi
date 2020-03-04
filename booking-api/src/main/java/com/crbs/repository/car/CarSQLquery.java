@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.car;
 
 public class CarSQLquery {
 	public static final String SELECT_AVAILABLE_CAR = "select * from CAR where CNT != 0"; // 현재 예약가능한 차량정보 리스트 출력

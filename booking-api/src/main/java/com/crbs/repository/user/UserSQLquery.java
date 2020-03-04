@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.user;
 
 public class UserSQLquery {
 

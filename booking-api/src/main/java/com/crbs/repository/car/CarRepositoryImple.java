@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.car;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.crbs.model.Car;
+import com.crbs.security.JasyptEncDec;
 
 @Repository
 public class CarRepositoryImple implements CarRepository {
@@ -26,7 +27,9 @@ public class CarRepositoryImple implements CarRepository {
 	
 	@Override
 	public int insertCarInfo(Car car) {
-		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
+		JasyptEncDec enc = new JasyptEncDec();
+		String encryptedCode = enc.encryptText(car.getCode());
+		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, encryptedCode, car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
 	}
 	
 	@Override
