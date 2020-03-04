@@ -12,4 +12,6 @@ public interface UserService {
 	
 	//수정
 	int updateUser(String id, User user);
+	
+	int login(String id,String password);
 }

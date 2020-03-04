@@ -10,5 +10,8 @@ public class UserSQLquery {
 		
 	//회원정보 수정
 	public static final String UPDATE_USER = "update CUSTOMER set phonenumber = ? where id = ?"; 
+
+	//로그인
+	public static final String FINDBYID = "select password from CUSTOMER where id = ?"; 
 	
 }

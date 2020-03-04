@@ -14,5 +14,6 @@ public interface UserRepository {
 	int updateUser(String id, User user);
 	
 	//로그인
+	String findById(String id);
 	
 }
