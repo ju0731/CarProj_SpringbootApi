@@ -1,5 +1,8 @@
 package com.crbs.service.reservation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +21,22 @@ public class ReservationServiceImple implements ReservationService {
 			return 1;
 		else
 			return 0;
+	}
+	
+	@Override
+	public int getNumOfReservation() {
+		int result = reservationDao.getNumOfReservation();
+		return result;
+	}
+	
+	@Override
+	public List<Reservation> showReservationList() {
+		List<Reservation> reservation;
+		try {
+			reservation = reservationDao.getReservationList();
+		} catch (Exception e) {
+			reservation = new ArrayList<Reservation>();
+		}
+		return reservation;
 	}
 }

@@ -3,10 +3,10 @@ package com.crbs.model;
 import java.util.Date;
 
 public class Reservation {
-	String customerId;
-	String carCode;
-	Date startDate;
-	Date endDate;
+	private String customerId;
+	private String carCode;
+	private Date startDate;
+	private Date endDate;
 	
 	public Reservation() {}
 
