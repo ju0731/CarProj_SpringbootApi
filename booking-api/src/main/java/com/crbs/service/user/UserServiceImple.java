@@ -39,5 +39,10 @@ public class UserServiceImple implements UserService{
 			return 0;
 		}
 	}
+	
+	@Override
+	public User read(User user) {
+		return dao.findUserByIdAndPassword(user.getId(), user.getPassword());
+	}
 
 }

@@ -6,13 +6,13 @@ public class User {
 	private String name;
 	private String password;
 	private String phonenumber;
-	private Boolean isadmin;
+	private int isadmin;
 	
 	
-	public Boolean getIsadmin() {
+	public int getIsadmin() {
 		return isadmin;
 	}
-	public void setIsadmin(Boolean isadmin) {
+	public void setIsadmin(int isadmin) {
 		this.isadmin = isadmin;
 	}
 	public String getId() {
