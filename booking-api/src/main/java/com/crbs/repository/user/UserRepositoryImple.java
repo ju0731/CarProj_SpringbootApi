@@ -35,4 +35,9 @@ public class UserRepositoryImple implements UserRepository{
 		return this.jdbcTemplate.queryForObject(UserSQLquery.FINDBYID, String.class, id);
 	}
 
+	@Override
+	public User findUserByIdAndPassword(String id, String password) {
+		return (User) this.jdbcTemplate.query(UserSQLquery.SELECT_ALL_FOR_LOGIN, new UserLoginSelectionMapper(), id, password);
+	}
 }
+
