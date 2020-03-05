@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.user;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

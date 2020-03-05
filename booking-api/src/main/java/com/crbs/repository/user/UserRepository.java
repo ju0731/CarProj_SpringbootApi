@@ -1,9 +1,9 @@
-package com.crbs.service;
+package com.crbs.repository.user;
 
 import com.crbs.model.User;
 
-public interface UserService {
-
+public interface UserRepository {
+	
 	//회원가입
 	int insertUser(User user);
 	
@@ -13,5 +13,7 @@ public interface UserService {
 	//수정
 	int updateUser(String id, User user);
 	
-	int login(String id,String password);
+	//로그인
+	String findById(String id);
+	
 }

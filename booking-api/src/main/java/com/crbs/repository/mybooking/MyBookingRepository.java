@@ -1,4 +1,4 @@
-package com.crbs.repository;
+package com.crbs.repository.mybooking;
 
 import java.util.List;
 

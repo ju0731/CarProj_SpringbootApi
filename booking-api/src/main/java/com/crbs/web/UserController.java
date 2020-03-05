@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crbs.model.MyBooking;
 import com.crbs.model.User;
-import com.crbs.service.UserService;
+import com.crbs.service.user.UserService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs/users")

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crbs.model.MyBooking;
-import com.crbs.service.MyBookingService;
+import com.crbs.service.mybooking.MyBookingService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs/mybooking")

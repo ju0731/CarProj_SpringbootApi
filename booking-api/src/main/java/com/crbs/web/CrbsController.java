@@ -18,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.crbs.model.Car;
 import com.crbs.model.Reservation;
-import com.crbs.service.CarService;
-import com.crbs.service.ReservationService;
+import com.crbs.security.JasyptEncDec;
+import com.crbs.service.car.CarService;
+import com.crbs.service.reservation.ReservationService;
 
 @RestController
 @RequestMapping("/v0.0.3/crbs")
@@ -37,19 +38,23 @@ public class CrbsController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-				List<Car> car = carService.showAvailableCarList();
-				int cntListItem = carService.getNumOfAvailableCar();
-				HashMap<String, Object> hashmap = new HashMap<>();
-				hashmap.put("car", car);
-				hashmap.put("cntListItem", cntListItem);
-		if (car == null) {
-			return new ResponseEntity<HashMap<String, Object>>(HttpStatus.NO_CONTENT);
+		List<Car> car = carService.showAvailableCarList();
+		int cntListItem = carService.getNumOfAvailableCar();
+
+		JasyptEncDec dec = new JasyptEncDec();
+		for (int i = 0; i < cntListItem; i++) {
+			String decryptedCode = dec.decryptText(car.get(i).getCode());
+			car.get(i).setCode(decryptedCode);
 		}
+
+		HashMap<String, Object> hashmap = new HashMap<>();
+		hashmap.put("car", car);
+		hashmap.put("cntListItem", cntListItem);
 		return new ResponseEntity<HashMap<String, Object>>(hashmap, headers, HttpStatus.OK);
 	}
-	
-	@CrossOrigin(origins="*")
-	@RequestMapping(value = "/admin", method = RequestMethod.POST,produces = "application/json")
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/admin", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Car> createCarInfo(@RequestBody Car car) {
 		logger.info("createCarInfo() controller called");
 		HttpHeaders headers = new HttpHeaders();
@@ -57,25 +62,25 @@ public class CrbsController {
 			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
 		}
 		int i = carService.registerCarInfo(car);
-		headers.add("A post Created - " , String.valueOf(car.getCode()));
-		headers.add("A post Created - " , String.valueOf(car.getName()));
-		headers.add("A post Created - " , String.valueOf(car.getPrice()));
-		headers.add("A post Created - " , String.valueOf(car.getColor()));
-		headers.add("A post Created - " , String.valueOf(car.getFuel()));
-		headers.add("A post Created - " , String.valueOf(car.getDisplacement()));
-		headers.add("A post Created - " , String.valueOf(car.getSize()));
-		headers.add("A post Created - " , String.valueOf(car.getImageUrl()));
-		headers.add("A post Created - " , String.valueOf(car.getCnt()));
+		headers.add("A post Created - ", String.valueOf(car.getCode()));
+		headers.add("A post Created - ", String.valueOf(car.getName()));
+		headers.add("A post Created - ", String.valueOf(car.getPrice()));
+		headers.add("A post Created - ", String.valueOf(car.getColor()));
+		headers.add("A post Created - ", String.valueOf(car.getFuel()));
+		headers.add("A post Created - ", String.valueOf(car.getDisplacement()));
+		headers.add("A post Created - ", String.valueOf(car.getSize()));
+		headers.add("A post Created - ", String.valueOf(car.getImageUrl()));
+		headers.add("A post Created - ", String.valueOf(car.getCnt()));
 
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		if (i == 0) {
-			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST); 
-		}  
-		return new ResponseEntity<Car>(car, headers, HttpStatus.CREATED); 
+			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Car>(car, headers, HttpStatus.CREATED);
 	}
-	
-	@CrossOrigin(origins="*")
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/admin/{code}", method = RequestMethod.DELETE)
 	public ResponseEntity<Integer> deleteCarInfo(@PathVariable("code") String code) {
 		logger.info("deleteCarInfo() controller called");
@@ -86,14 +91,12 @@ public class CrbsController {
 		if (i == 0) {
 			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
 		}
-		return new ResponseEntity<Integer>(i, headers,HttpStatus.OK);
+		return new ResponseEntity<Integer>(i, headers, HttpStatus.OK);
 	}
-	
-	@CrossOrigin(origins="*")
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/admin/{code}", method = RequestMethod.PUT, produces = "application/json")
-	public ResponseEntity<Car> updateCarInfo(@PathVariable("code") String code, @RequestBody Car car) { 	
-		// Get a Board Object through RequestBody annotation
-		// ResponseEntity 타입을 Integer -> Board로 변경																						
+	public ResponseEntity<Car> updateCarInfo(@PathVariable("code") String code, @RequestBody Car car) {
 		logger.info("udpateBoard() controller called");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Origin", "*");
@@ -101,9 +104,9 @@ public class CrbsController {
 		carService.renewCarInfoByCode(car, code);
 		return new ResponseEntity<Car>(car, HttpStatus.CREATED);
 	}
-	
-	@CrossOrigin(origins="*")
-	@RequestMapping(value = "/reservations", method = RequestMethod.POST,produces = "application/json")
+
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/reservations", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
 		logger.info("createReservation() controller called");
 		HttpHeaders headers = new HttpHeaders();
@@ -111,26 +114,48 @@ public class CrbsController {
 			return new ResponseEntity<Reservation>(HttpStatus.BAD_REQUEST);
 		}
 		int i = reservationService.registerReservation(reservation);
-		headers.add("A post Created - " , String.valueOf(reservation.getCustomerId()));
-		headers.add("A post Created - " , String.valueOf(reservation.getCarCode()));
-		headers.add("A post Created - " , String.valueOf(reservation.getStartDate()));
-		headers.add("A post Created - " , String.valueOf(reservation.getEndDate()));
+		headers.add("A post Created - ", String.valueOf(reservation.getCustomerId()));
+		headers.add("A post Created - ", String.valueOf(reservation.getCarCode()));
+		headers.add("A post Created - ", String.valueOf(reservation.getStartDate()));
+		headers.add("A post Created - ", String.valueOf(reservation.getEndDate()));
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		if (i == 0) {
-			return new ResponseEntity<Reservation>(HttpStatus.BAD_REQUEST); 
-		}  
-		return new ResponseEntity<Reservation>(reservation, headers, HttpStatus.CREATED); 
+			return new ResponseEntity<Reservation>(HttpStatus.BAD_REQUEST);
+		}
+		return new ResponseEntity<Reservation>(reservation, headers, HttpStatus.CREATED);
 	}
-	
-	@CrossOrigin(origins="*")
+
+	@RequestMapping(value = "/users/myreservs", method = RequestMethod.GET)
+	public ResponseEntity<HashMap<String, Object>> getReservationList() {
+		logger.info("getReservationList() controller called");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Origin", "*");
+		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+		List<Reservation> reservation = reservationService.showReservationList();
+		int cntListItem = reservationService.getNumOfReservation();
+		logger.info("cntListItem : {}", cntListItem);
+		JasyptEncDec dec = new JasyptEncDec();
+		for (int i = 0; i < cntListItem; i++) {
+			String decryptedCode = dec.decryptText(reservation.get(i).getCarCode());
+			reservation.get(i).setCarCode(decryptedCode);
+			String decryptedId = dec.decryptText(reservation.get(i).getCustomerId());
+			reservation.get(i).setCustomerId(decryptedId);
+		}
+		HashMap<String, Object> hashmap = new HashMap<>();
+		hashmap.put("reservation", reservation);
+		hashmap.put("cntListItem", cntListItem);
+		return new ResponseEntity<HashMap<String, Object>>(hashmap, headers, HttpStatus.OK);
+	}
+
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.OPTIONS)
 	public ResponseEntity<Integer> optionBoard() {
 		logger.info("optionBoard() controller called");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-		return new ResponseEntity<Integer>(headers,HttpStatus.OK);
+		return new ResponseEntity<Integer>(headers, HttpStatus.OK);
 	}
 
 }

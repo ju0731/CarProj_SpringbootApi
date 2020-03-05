@@ -1,4 +1,4 @@
-package com.crbs.service;
+package com.crbs.service.car;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.crbs.model.Car;
-import com.crbs.repository.CarRepositoryImple;
+import com.crbs.repository.car.CarRepositoryImple;
 
 @Service
 public class CarServiceImple implements CarService {
