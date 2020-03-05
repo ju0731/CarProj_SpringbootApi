@@ -1,7 +1,6 @@
 package com.crbs.repository.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -35,15 +34,5 @@ public class UserRepositoryImple implements UserRepository {
 	@Override
 	public String findById(String id) {
 		return this.jdbcTemplate.queryForObject(UserSQLquery.FINDBYID, String.class, id);
-	}
-
-	@Override
-	public User findUserByIdAndPassword(String id, String password) {
-		try {
-			return this.jdbcTemplate.queryForObject(UserSQLquery.SELECT_ALL_FOR_LOGIN, new UserLoginSelectionMapper(),
-					id, password);
-		} catch (EmptyResultDataAccessException e) {
-			return null;
-		}
 	}
 }
