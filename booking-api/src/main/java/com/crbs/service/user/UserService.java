@@ -14,6 +14,4 @@ public interface UserService {
 	int updateUser(String id, User user);
 	
 	int login(String id,String password);
-	
-	User read (User user);
 }

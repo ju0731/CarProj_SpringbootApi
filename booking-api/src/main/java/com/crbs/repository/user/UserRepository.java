@@ -15,6 +15,4 @@ public interface UserRepository {
 	
 	//로그인
 	String findById(String id);
-	
-	User findUserByIdAndPassword(String id, String password);
 }

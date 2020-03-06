@@ -82,27 +82,4 @@ public class UserController {
 		else
 			return new ResponseEntity<Integer>(login, headers, HttpStatus.OK);
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	/* Login Controller */
-	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public void login(User user, Model model) {
-		logger.info("login() controller called");
-		User loginResult = userService.read(user);
-		model.addAttribute("loginResult", loginResult);
-	}
-	
 }
