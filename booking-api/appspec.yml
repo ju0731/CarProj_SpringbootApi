@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/back/
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh #SET PATH
+      timeout: 150
+      runas: root
+  AfterInstall:
+    - location: scripts/afterInstall.sh #MVN COMPILE
+      timeout: 600
+      runas: root
+    - location: scripts/afterInstall2.sh #SERVICE GEN
+      timeout: 150
+      runas: root
+  ApplicationStart:
+    - location: scripts/applicationStart.sh #START SERVICE
+      timeout: 150
+      runas: root
