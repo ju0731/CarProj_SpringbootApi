@@ -71,12 +71,12 @@ public class UserController {
 			return new ResponseEntity<String>(id, headers,HttpStatus.CREATED);
 	}	
 	@CrossOrigin(origins="*")
-	@RequestMapping(value = "/{id}/{password}", method = RequestMethod.GET)
-	public ResponseEntity<Integer> login(@PathVariable("id") String id,@PathVariable("password") String password){
+	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	public ResponseEntity<Integer> login(@RequestBody User user){
 		logger.info("login() controller called");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-		int login = userService.login(id, password);
+		int login = userService.login(user.getId(), user.getPassword());
 		if(login==0)
 			return new ResponseEntity<Integer>(HttpStatus.UNAUTHORIZED);
 		else
