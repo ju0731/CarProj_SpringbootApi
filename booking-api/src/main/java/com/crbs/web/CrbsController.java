@@ -54,7 +54,7 @@ public class CrbsController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/admin", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "/admins", method = RequestMethod.POST, produces = "application/json")
 	public ResponseEntity<Car> createCarInfo(@RequestBody Car car) {
 		logger.info("createCarInfo() controller called");
 		HttpHeaders headers = new HttpHeaders();
@@ -81,7 +81,7 @@ public class CrbsController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/admin/{code}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/admins/{code}", method = RequestMethod.DELETE)
 	public ResponseEntity<Integer> deleteCarInfo(@PathVariable("code") String code) {
 		logger.info("deleteCarInfo() controller called");
 		HttpHeaders headers = new HttpHeaders();
@@ -95,7 +95,7 @@ public class CrbsController {
 	}
 
 	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "/admin/{code}", method = RequestMethod.PUT, produces = "application/json")
+	@RequestMapping(value = "/admins/{code}", method = RequestMethod.PUT, produces = "application/json")
 	public ResponseEntity<Car> updateCarInfo(@PathVariable("code") String code, @RequestBody Car car) {
 		logger.info("udpateBoard() controller called");
 		HttpHeaders headers = new HttpHeaders();
