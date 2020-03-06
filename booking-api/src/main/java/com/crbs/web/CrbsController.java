@@ -32,6 +32,7 @@ public class CrbsController {
 	@Autowired
 	CarService carService;
 
+	@CrossOrigin(origins="*")
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<HashMap<String, Object>> getAvailabeCarList() {
 		logger.info("getAvailabeCarList() controller called");
