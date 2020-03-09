@@ -37,16 +37,15 @@ public class CrbsController {
 	public ResponseEntity<HashMap<String, Object>> getAvailabeCarList() {
 		logger.info("getAvailabeCarList() controller called");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		List<Car> car = carService.showAvailableCarList();
 		int cntListItem = carService.getNumOfAvailableCar();
 
-		JasyptEncDec dec = new JasyptEncDec();
-		for (int i = 0; i < cntListItem; i++) {
-			String decryptedCode = dec.decryptText(car.get(i).getCode());
-			car.get(i).setCode(decryptedCode);
-		}
+//		JasyptEncDec dec = new JasyptEncDec();
+//		for (int i = 0; i < cntListItem; i++) {
+//			String decryptedCode = dec.decryptText(car.get(i).getCode());
+//			car.get(i).setCode(decryptedCode);
+//		}
 
 		HashMap<String, Object> hashmap = new HashMap<>();
 		hashmap.put("car", car);
@@ -73,7 +72,6 @@ public class CrbsController {
 		headers.add("A post Created - ", String.valueOf(car.getImageUrl()));
 		headers.add("A post Created - ", String.valueOf(car.getCnt()));
 
-		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		if (i == 0) {
 			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
@@ -86,7 +84,6 @@ public class CrbsController {
 	public ResponseEntity<Integer> deleteCarInfo(@PathVariable("code") String code) {
 		logger.info("deleteCarInfo() controller called");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		int i = carService.removeCarInfoByCode(code);
 		if (i == 0) {
@@ -100,7 +97,6 @@ public class CrbsController {
 	public ResponseEntity<Car> updateCarInfo(@PathVariable("code") String code, @RequestBody Car car) {
 		logger.info("udpateBoard() controller called");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		carService.renewCarInfoByCode(car, code);
 		return new ResponseEntity<Car>(car, HttpStatus.CREATED);
@@ -119,7 +115,7 @@ public class CrbsController {
 		headers.add("A post Created - ", String.valueOf(reservation.getCarCode()));
 		headers.add("A post Created - ", String.valueOf(reservation.getStartDate()));
 		headers.add("A post Created - ", String.valueOf(reservation.getEndDate()));
-		headers.add("Access-Control-Allow-Origin", "*");
+		
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		if (i == 0) {
 			return new ResponseEntity<Reservation>(HttpStatus.BAD_REQUEST);
@@ -131,7 +127,6 @@ public class CrbsController {
 	public ResponseEntity<HashMap<String, Object>> getReservationList() {
 		logger.info("getReservationList() controller called");
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Origin", "*");
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		List<Reservation> reservation = reservationService.showReservationList();
 		int cntListItem = reservationService.getNumOfReservation();
