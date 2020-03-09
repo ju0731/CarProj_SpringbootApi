@@ -32,7 +32,7 @@ public class CrbsController {
 	@Autowired
 	CarService carService;
 
-	@CrossOrigin(origins="*")
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ResponseEntity<HashMap<String, Object>> getAvailabeCarList() {
 		logger.info("getAvailabeCarList() controller called");
@@ -58,25 +58,25 @@ public class CrbsController {
 	public ResponseEntity<Car> createCarInfo(@RequestBody Car car) {
 		logger.info("createCarInfo() controller called");
 		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+
 		if (car == null) {
 			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
 		}
 		int i = carService.registerCarInfo(car);
-		headers.add("A post Created - ", String.valueOf(car.getCode()));
-		headers.add("A post Created - ", String.valueOf(car.getName()));
-		headers.add("A post Created - ", String.valueOf(car.getPrice()));
-		headers.add("A post Created - ", String.valueOf(car.getColor()));
-		headers.add("A post Created - ", String.valueOf(car.getFuel()));
-		headers.add("A post Created - ", String.valueOf(car.getDisplacement()));
-		headers.add("A post Created - ", String.valueOf(car.getSize()));
-		headers.add("A post Created - ", String.valueOf(car.getImageUrl()));
-		headers.add("A post Created - ", String.valueOf(car.getCnt()));
-
-		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-		if (i == 0) {
+//		headers.add("A post Created - ", String.valueOf(car.getCode()));
+//		headers.add("A post Created - ", String.valueOf(car.getName()));
+//		headers.add("A post Created - ", String.valueOf(car.getPrice()));
+//		headers.add("A post Created - ", String.valueOf(car.getColor()));
+//		headers.add("A post Created - ", String.valueOf(car.getFuel()));
+//		headers.add("A post Created - ", String.valueOf(car.getDisplacement()));
+//		headers.add("A post Created - ", String.valueOf(car.getSize()));
+//		headers.add("A post Created - ", String.valueOf(car.getImageUrl()));
+//		headers.add("A post Created - ", String.valueOf(car.getCnt()));
+		if (i == 0)
 			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Car>(car, headers, HttpStatus.CREATED);
+		else
+			return new ResponseEntity<Car>(car, headers, HttpStatus.CREATED);
 	}
 
 	@CrossOrigin(origins = "*")
@@ -107,22 +107,23 @@ public class CrbsController {
 	public ResponseEntity<Reservation> createReservation(@RequestBody Reservation reservation) {
 		logger.info("createReservation() controller called");
 		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		if (reservation == null) {
 			return new ResponseEntity<Reservation>(HttpStatus.BAD_REQUEST);
 		}
 		int i = reservationService.registerReservation(reservation);
-		headers.add("A post Created - ", String.valueOf(reservation.getCustomerId()));
-		headers.add("A post Created - ", String.valueOf(reservation.getCarCode()));
-		headers.add("A post Created - ", String.valueOf(reservation.getStartDate()));
-		headers.add("A post Created - ", String.valueOf(reservation.getEndDate()));
-		
-		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-		if (i == 0) {
+//		headers.add("A post Created - ", String.valueOf(reservation.getCustomerId()));
+//		headers.add("A post Created - ", String.valueOf(reservation.getCarCode()));
+//		headers.add("A post Created - ", String.valueOf(reservation.getStartDate()));
+//		headers.add("A post Created - ", String.valueOf(reservation.getEndDate()));
+
+		if (i == 0)
 			return new ResponseEntity<Reservation>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Reservation>(reservation, headers, HttpStatus.CREATED);
+		else
+			return new ResponseEntity<Reservation>(reservation, headers, HttpStatus.CREATED);
 	}
 
+	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/users/myreservs", method = RequestMethod.GET)
 	public ResponseEntity<HashMap<String, Object>> getReservationList() {
 		logger.info("getReservationList() controller called");
@@ -131,13 +132,13 @@ public class CrbsController {
 		List<Reservation> reservation = reservationService.showReservationList();
 		int cntListItem = reservationService.getNumOfReservation();
 		logger.info("cntListItem : {}", cntListItem);
-		JasyptEncDec dec = new JasyptEncDec();
-		for (int i = 0; i < cntListItem; i++) {
-			String decryptedCode = dec.decryptText(reservation.get(i).getCarCode());
-			reservation.get(i).setCarCode(decryptedCode);
-			String decryptedId = dec.decryptText(reservation.get(i).getCustomerId());
-			reservation.get(i).setCustomerId(decryptedId);
-		}
+//		JasyptEncDec dec = new JasyptEncDec();
+//		for (int i = 0; i < cntListItem; i++) {
+//			String decryptedCode = dec.decryptText(reservation.get(i).getCarCode());
+//			reservation.get(i).setCarCode(decryptedCode);
+//			String decryptedId = dec.decryptText(reservation.get(i).getCustomerId());
+//			reservation.get(i).setCustomerId(decryptedId);
+//		}
 		HashMap<String, Object> hashmap = new HashMap<>();
 		hashmap.put("reservation", reservation);
 		hashmap.put("cntListItem", cntListItem);

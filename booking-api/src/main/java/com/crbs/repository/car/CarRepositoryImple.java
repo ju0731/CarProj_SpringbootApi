@@ -27,9 +27,9 @@ public class CarRepositoryImple implements CarRepository {
 	
 	@Override
 	public int insertCarInfo(Car car) {
-		JasyptEncDec enc = new JasyptEncDec();
-		String encryptedCode = enc.encryptText(car.getCode());
-		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, encryptedCode, car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
+//		JasyptEncDec enc = new JasyptEncDec();
+//		String encryptedCode = enc.encryptText(car.getCode());
+		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
 	}
 	
 	@Override
@@ -41,8 +41,8 @@ public class CarRepositoryImple implements CarRepository {
 	
 	@Override
 	public int updateCarInfoByCode(Car car, String code) {
-		JasyptEncDec enc = new JasyptEncDec();
-		String encryptedCode = enc.encryptText(code);
-		return this.jdbcTemplate.update(CarSQLquery.UPDATE_CAR_INFO_BY_CODE, car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt(), encryptedCode);
+//		JasyptEncDec enc = new JasyptEncDec();
+//		String encryptedCode = enc.encryptText(code);
+		return this.jdbcTemplate.update(CarSQLquery.UPDATE_CAR_INFO_BY_CODE, car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt(), code);
 	}
 }
