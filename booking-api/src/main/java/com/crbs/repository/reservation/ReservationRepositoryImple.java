@@ -24,10 +24,10 @@ public class ReservationRepositoryImple implements ReservationRepository {
 	
 	@Override
 	public int insertReservation(Reservation reservation) {
-		JasyptEncDec enc = new JasyptEncDec();
-		String encryptedCustomerId = enc.encryptText(reservation.getCustomerId());
-		String encryptedCarCode = enc.encryptText(reservation.getCarCode());
-		return this.jdbcTemplate.update(ReservationSQLquery.INSERT_RESERVATION, encryptedCustomerId, encryptedCarCode, reservation.getStartDate(), reservation.getEndDate());
+//		JasyptEncDec enc = new JasyptEncDec();
+//		String encryptedCustomerId = enc.encryptText(reservation.getCustomerId());
+//		String encryptedCarCode = enc.encryptText(reservation.getCarCode());
+		return this.jdbcTemplate.update(ReservationSQLquery.INSERT_RESERVATION, reservation.getCustomerId(), reservation.getCarCode(), reservation.getStartDate(), reservation.getEndDate());
 	}
 	
 	@Override
