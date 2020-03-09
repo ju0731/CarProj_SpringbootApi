@@ -13,5 +13,5 @@ public interface CarService {
 
 	int removeCarInfoByCode(String code);
 	
-	void renewCarInfoByCode(Car car, String code);
+	int renewCarInfoByCode(Car car, String code);
 }

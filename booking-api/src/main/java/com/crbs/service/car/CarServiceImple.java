@@ -53,7 +53,8 @@ public class CarServiceImple implements CarService {
 	}
 	
 	@Override
-	public void renewCarInfoByCode(Car car, String code) {
-		carDao.updateCarInfoByCode(car, code);
+	public int renewCarInfoByCode(Car car, String code) {
+		int result = carDao.updateCarInfoByCode(car, code);
+		return result;
 	}
 }

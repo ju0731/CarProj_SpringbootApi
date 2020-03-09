@@ -12,10 +12,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.crbs.model.Car;
@@ -25,6 +28,8 @@ import com.crbs.web.CrbsController;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 public class CarControllerTest {
+	private static final Logger logger = LoggerFactory.getLogger(CarControllerTest.class);
+
 	@Mock
 	private CarService carService;
 	
@@ -57,4 +62,25 @@ when(carService.registerCarInfo(any(Car.class))).thenReturn(1);
 						"        }").accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andDo(print());
 		
 	}
+	
+	@Test
+	public void deleteCarInfoTest() throws Exception {
+		when(carService.removeCarInfoByCode("CRBS0001")).thenReturn(1);
+		logger.info("delete - i : {}", carService.removeCarInfoByCode("CRBS0001"));
+
+	}
+	
+	@Test
+	public void updateCarInfoTest() throws Exception {
+		Car c = new Car("CRBS0001", "new audi", 15000, "red", "gasolin", 3500, "중형", null, 9);
+		when(carService.renewCarInfoByCode(c, "CRBS0001")).thenReturn(1);
+		
+		mockMvc.perform(MockMvcRequestBuilders.put("/v0.0.3/crbs/admin/{code}", "CRBS0001").contentType(MediaType.APPLICATION_JSON)
+			.content("  {\r\n" + 
+					"            \"name\": \"new audi2\",\r\n" + 
+					"            \"price\": 16000\r\n" + 
+					"        }")
+			.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isCreated());
+	}
+	
 }
