@@ -15,4 +15,6 @@ public interface UserRepository {
 	
 	//로그인
 	String findById(String id);
+	
+	User findUserData(String id); 	// 회원정보 출력
 }

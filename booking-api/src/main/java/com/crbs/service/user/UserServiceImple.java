@@ -39,4 +39,9 @@ public class UserServiceImple implements UserService{
 			return 0;
 		}
 	}
+	
+	@Override
+	public User findUser(String id) {
+		return dao.findUserData(id);
+	}
 }
