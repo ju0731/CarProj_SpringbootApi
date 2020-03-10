@@ -43,11 +43,8 @@ public class MyBookingServiceImple implements MyBookingService {
 			if(now.getDay()>=start.getDay()) {
 				return"expiration : 예약 취소 가능 기간이 만료되었습니다.";
 			}
-			try {
-				mbDAO.deleteMyBooking(customer_id, car_code);
-			} catch (Exception e) {
-				return e.toString();
-			}
+			mbDAO.deleteMyBooking(customer_id, car_code);
+			mbDAO.updateCnt(car_code);
 			return"SUCCESS";
 		} catch (Exception e) {
 			return e.toString();
