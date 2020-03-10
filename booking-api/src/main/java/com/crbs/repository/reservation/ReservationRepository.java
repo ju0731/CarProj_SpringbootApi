@@ -10,5 +10,11 @@ public interface ReservationRepository {
 	
 	int getNumOfReservation();
 
-	int insertReservation(Reservation reservation); 
+	int insertReservation(Reservation reservation);
+	
+	int getNumOfCar(String code);
+	
+	int addCarCnt(String code);
+	
+	int subtractCarCnt(String code);
 }
