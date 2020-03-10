@@ -1,5 +1,7 @@
 package com.crbs.service.mybooking;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -28,9 +30,28 @@ public class MyBookingServiceImple implements MyBookingService {
 		return myReservations;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public int deleteMyBooking(String customer_id, String car_code) {
-		return mbDAO.deleteMyBooking(customer_id, car_code);
+	public String deleteMyBooking(String customer_id, String car_code) {
+		try {
+			String startdate = mbDAO.getStartDate(customer_id, car_code);
+			SimpleDateFormat  formatter = new SimpleDateFormat("yyyy-MM-dd");
+			Date now = new Date();
+			Date start = formatter.parse(startdate);
+			logger.info("예약 시작 날짜 : "+start.toString()+start.getDay());
+			logger.info("오늘 날짜 : "+now.toString()+now.getDay());
+			if(now.getDay()>=start.getDay()) {
+				return"expiration : 예약 취소 가능 기간이 만료되었습니다.";
+			}
+			try {
+				mbDAO.deleteMyBooking(customer_id, car_code);
+			} catch (Exception e) {
+				return e.toString();
+			}
+			return"SUCCESS";
+		} catch (Exception e) {
+			return e.toString();
+		}
 	}
 	
 }

@@ -52,17 +52,18 @@ public class MyBookingController {
 
 	@CrossOrigin(origins="*")
 	@RequestMapping(value = "/{customer_id}/{car_code}", method = RequestMethod.DELETE)
-	public ResponseEntity<Integer> deleteMyBooking(@PathVariable("customer_id") String customer_id,@PathVariable("car_code") String car_code){
-		logger.info("deleteMyBookingr() controller called");
+	public ResponseEntity<String> deleteMyBooking(@PathVariable("customer_id") String customer_id,@PathVariable("car_code") String car_code){
+		logger.info("deleteMyBooking() controller called");
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-		if(myBookingService.deleteMyBooking(customer_id, car_code)==0)
-			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
+		
+		String result = myBookingService.deleteMyBooking(customer_id, car_code);
+		logger.info(result);
+		
+		if(result.equals("Success"))
+			return new ResponseEntity<String>("Success",headers,HttpStatus.OK);
 		else
-			return new ResponseEntity<Integer>(headers,HttpStatus.OK);
-		
-		
-		
+			return new ResponseEntity<String>(result,headers,HttpStatus.BAD_REQUEST);
 	}
 
 }

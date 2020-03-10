@@ -59,7 +59,7 @@ public class MyBookingControllerTest {
 	//나의 예약 취소 Test
 	@Test
 	public void deleteMyBookingTest() throws Exception {
-		when(mybookingService.deleteMyBooking(anyString(), anyString())).thenReturn(1);
+		when(mybookingService.deleteMyBooking(anyString(), anyString())).thenReturn(anyString());
 		logger.info("deleteMyBookingTest() controller called");
 		mockMvc.perform(delete("/v0.0.3/crbs/mybooking/{customer_id}/{car_code}","sd","A001"))
 		.andDo(print())
