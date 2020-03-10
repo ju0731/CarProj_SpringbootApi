@@ -20,11 +20,15 @@ public class MyBookingRepositoryImple implements MyBookingRepository{
 	}
 	@Override
 	public int deleteMyBooking(String customer_id, String car_code) {
-		return this.jdbcTemplate.update(MyBookingSQLquery.DELETE_MyBooking,car_code,customer_id);
+		return this.jdbcTemplate.update(MyBookingSQLquery.DELETE_MyBooking,customer_id,car_code);
 	}
 	@Override
 	public String getStartDate(String customer_id, String car_code) {
 		return this.jdbcTemplate.queryForObject(MyBookingSQLquery.SELECT_STARTDATE, String.class,customer_id,car_code);
+	}
+	@Override
+	public int updateCnt(String car_code) {
+		return this.jdbcTemplate.update(MyBookingSQLquery.UPDATE_CNT,car_code);
 	}
 
 }

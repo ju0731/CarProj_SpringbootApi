@@ -11,4 +11,6 @@ public interface MyBookingRepository {
 	int deleteMyBooking(String customer_id,String car_code);
 	//예약 시작날짜 불러오기
 	String getStartDate(String customer_id,String car_code);
+	//예약 취소시 cnt+1해주기
+	int updateCnt(String car_code);
 }
