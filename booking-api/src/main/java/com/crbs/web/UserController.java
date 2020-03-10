@@ -71,7 +71,7 @@ public class UserController {
 			return new ResponseEntity<String>(id, headers,HttpStatus.CREATED);
 	}	
 	@CrossOrigin(origins="*")
-	@RequestMapping(value = "/signin", method = RequestMethod.GET)
+	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public ResponseEntity<Integer> login(@RequestBody User user){
 		logger.info("login() controller called");
 		HttpHeaders headers = new HttpHeaders();
