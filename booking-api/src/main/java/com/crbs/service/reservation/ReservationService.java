@@ -11,4 +11,5 @@ public interface ReservationService {
 	int getNumOfReservation();
 
 	int registerReservation(Reservation reservation);
+
 }

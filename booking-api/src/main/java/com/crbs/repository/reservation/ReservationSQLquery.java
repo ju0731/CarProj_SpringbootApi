@@ -7,5 +7,10 @@ public class ReservationSQLquery {
 	
 	public static final String SELECT_CNT_RESERVATION = "select COUNT(*) from RESERVATION";
 
+	public static final String SELECT_CNT_CAR = "select CNT from CAR where CODE = ?";
+	
+	public static final String UPDATE_TO_ADD_CNT_CAR = "update CAR set CNT = CNT + 1 where CODE = ?";
+
+	public static final String UPDATE_TO_SUBTRACT_CNT_CAR = "update CAR set CNT = CNT - 1 where CODE = ?";
 }
 
