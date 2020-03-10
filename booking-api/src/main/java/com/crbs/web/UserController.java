@@ -1,5 +1,7 @@
 package com.crbs.web;
 
+import java.util.HashMap;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,4 +84,23 @@ public class UserController {
 		else
 			return new ResponseEntity<Integer>(login, headers, HttpStatus.OK);
 	}
+	
+	@CrossOrigin(origins = "*")
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<HashMap<String, Object>> getUserData(@PathVariable("id") String id) {
+		logger.info("getUserData() controller called");
+		HttpHeaders headers = new HttpHeaders();
+		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
+		User u = userService.findUser(id);
+		
+		HashMap<String, Object> hashmap = new HashMap<>();
+		hashmap.put("id", u.getId());
+		hashmap.put("name", u.getName());
+		hashmap.put("password", u.getPassword());
+		hashmap.put("phonenumber", u.getPhonenumber());
+	
+		return new ResponseEntity<HashMap<String,Object>>(hashmap, headers, HttpStatus.OK);
+	}
+	
+	
 }

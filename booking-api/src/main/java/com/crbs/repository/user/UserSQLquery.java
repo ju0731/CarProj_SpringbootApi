@@ -14,4 +14,6 @@ public class UserSQLquery {
 	//로그인
 	public static final String FINDBYID = "select password from CUSTOMER where id = ?"; 
 	
+	// 회원정보 조회
+	public static final String SELECT_USER_DATA = "select id, name, password, phonenumber from CUSTOMER where id = ?";
 }
