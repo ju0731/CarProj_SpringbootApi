@@ -15,5 +15,13 @@ sudo chmod +x mvnw
       }
     }
 
+    stage('S3 Upload') {
+      steps {
+        sh '''cd booking-api/target
+aws s3 cp booking-api-0.0.1-SNAPSHOT.jar s3://landingproject/back.jar
+'''
+      }
+    }
+
   }
 }
