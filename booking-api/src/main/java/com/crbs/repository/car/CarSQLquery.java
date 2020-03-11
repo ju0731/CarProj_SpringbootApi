@@ -7,7 +7,7 @@ public class CarSQLquery {
 			
 	public static final String INSERT_CAR_INFO = "insert into CAR (CODE, NAME, PRICE, COLOR, FUEL, DISPLACEMENT, SIZE, IMAGEURL, CNT) values (?,?,?,?,?,?,?,?,?)";
 
-	public static final String DELETE_CAR_INFO_BY_CODE = "delete from CAR where code = ?";
+	public static final String DELETE_CAR_INFO_BY_CODE = "delete from CAR where CODE = ?";
 	
 	public static final String UPDATE_CAR_INFO_BY_CODE = "update CAR set NAME = ?, PRICE = ?, COLOR = ?, FUEL = ?, DISPLACEMENT = ?, SIZE = ?, IMAGEURL = ?, CNT = ? where CODE = ?";
 	
