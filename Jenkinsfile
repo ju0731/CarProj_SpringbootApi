@@ -10,6 +10,7 @@ pipeline {
     stage('Bulid') {
       steps {
         sh '''cd booking-api
+sudo chmod +x mvnw
 ./mvnw clean package'''
       }
     }
