@@ -9,7 +9,8 @@ pipeline {
 
     stage('Bulid') {
       steps {
-        sh 'mkdir boyeon'
+        sh '''cd booking-api
+./mvnw clean package'''
       }
     }
 
