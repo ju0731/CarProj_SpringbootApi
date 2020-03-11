@@ -34,9 +34,9 @@ public class CarRepositoryImple implements CarRepository {
 	
 	@Override
 	public int deleteCarInfoByCode(String code) {
-		JasyptEncDec enc = new JasyptEncDec();
-		String encryptedCode = enc.encryptText(code);
-		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO_BY_CODE, encryptedCode);
+//		JasyptEncDec enc = new JasyptEncDec();
+//		String encryptedCode = enc.encryptText(code);
+		return this.jdbcTemplate.update(CarSQLquery.DELETE_CAR_INFO_BY_CODE, code);
 	}
 	
 	@Override

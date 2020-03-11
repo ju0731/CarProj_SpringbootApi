@@ -85,10 +85,11 @@ public class CrbsController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
 		int i = carService.removeCarInfoByCode(code);
-		if (i == 0) {
+		logger.info("deleteCarInfo() : {}", i);
+		if (i == 0)
 			return new ResponseEntity<Integer>(HttpStatus.BAD_REQUEST);
-		}
-		return new ResponseEntity<Integer>(i, headers, HttpStatus.OK);
+		else
+			return new ResponseEntity<Integer>(i, headers, HttpStatus.OK);
 	}
 
 	@CrossOrigin(origins = "*")
