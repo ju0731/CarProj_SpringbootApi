@@ -7,7 +7,7 @@ pipeline {
       }
     }
 
-    stage('Bulid') {
+    stage('Maven Build') {
       steps {
         sh '''cd booking-api
 sudo chmod +x mvnw
