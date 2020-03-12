@@ -1,4 +1,3 @@
 #!/bin/bash
-export PATH=$PATH:/home/ec2-user/apache-maven-3.6.3/bin
-cd /home/ec2-user/back
-mvn clean package
+sudo mv /home/ec2-user/back/scripts/devops_back.service /etc/systemd/system/
+sudo systemctl daemon-reload
