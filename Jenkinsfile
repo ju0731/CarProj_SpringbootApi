@@ -33,9 +33,9 @@ aws s3 cp back.tar s3://landingproject/back.tar'''
     stage('Create Deployment') {
       steps {
         sh '''aws deploy create-deployment \\
-    --application-name CRBS-codedeploy-app \\
+    --application-name hyuck_test \\
     --deployment-config-name CodeDeployDefault.AllAtOnce \\
-    --deployment-group-name $DG_NAME \\
+    --deployment-group-name testAPIgroup \\
     --s3-location bundleType="tar",bucket="landingproject",key=back.tar \\
     --file-exists-behavior "OVERWRITE"'''
       }
