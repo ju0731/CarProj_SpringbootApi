@@ -30,5 +30,38 @@ aws s3 cp back.tar s3://landingproject/back.tar'''
       }
     }
 
+    stage('Create DG') {
+      steps {
+        sh '''aws deploy delete-deployment-group \\
+    --application-name Devops_back \\
+    --deployment-group-name $DG_NAME
+aws deploy create-deployment-group \\
+    --application-name Devops_back \\
+    --deployment-group-name $DG_NAME \\
+    --service-role-arn arn:aws:iam::144149479695:role/landingproject_codeDeploy_codeDeploy \\
+    --auto-scaling-groups $ASG \\
+    --deployment-style deploymentType="BLUE_GREEN",deploymentOption="WITH_TRAFFIC_CONTROL" \\
+    --blue-green-deployment-configuration terminateBlueInstancesOnDeploymentSuccess={action="TERMINATE"},deploymentReadyOption={actionOnTimeout=CONTINUE_DEPLOYMENT},greenFleetProvisioningOption={action=COPY_AUTO_SCALING_GROUP} \\
+    --load-balancer-info targetGroupInfoList={name=hyuck-BlueGreen} \\
+    --deployment-config-name CodeDeployDefault.AllAtOnce
+'''
+      }
+    }
+
+    stage('Create Deployment') {
+      steps {
+        sh '''aws deploy create-deployment \\
+    --application-name Devops_back \\
+    --deployment-config-name CodeDeployDefault.AllAtOnce \\
+    --deployment-group-name $DG_NAME \\
+    --s3-location bundleType="tar",bucket="landingproject",key=back.tar \\
+    --file-exists-behavior "OVERWRITE"'''
+      }
+    }
+
+  }
+  environment {
+    DG_NAME = 'something'
+    ASG = 'something'
   }
 }
