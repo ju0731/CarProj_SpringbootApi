@@ -1,0 +1,18 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ec2-user/back/
+hooks:
+  BeforeInstall:
+    - location: scripts/beforeInstall.sh #CLEAN DIR
+      timeout: 150
+      runas: root
+  AfterInstall:
+    - location: scripts/afterInstall.sh #SERVICE GEN
+      timeout: 150
+      runas: root
+  ApplicationStart:
+    - location: scripts/applicationStart.sh #START SERVICE
+      timeout: 150
+      runas: root
