@@ -15,11 +15,18 @@ sudo chmod +x mvnw
       }
     }
 
+    stage('Compress') {
+      steps {
+        sh '''cd booking-api
+cp target/booking-api-0.0.1-SNAPSHOT.jar ./
+tar -cvf back.tar ./booking-api-0.0.1-SNAPSHOT.jar appspec.yml scripts'''
+      }
+    }
+
     stage('S3 Upload') {
       steps {
-        sh '''cd booking-api/target
-aws s3 cp booking-api-0.0.1-SNAPSHOT.jar s3://landingproject/back.jar
-'''
+        sh '''cd booking-api
+aws s3 cp back.tar s3://landingproject/back.tar'''
       }
     }
 
