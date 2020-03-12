@@ -11,7 +11,7 @@ spring:
       force: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://devops-rds.c7iudllookzy.ap-northeast-2.rds.amazonaws.com:3306/devops?useSSL=false&serverTimezone=UTC&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8
+    url: jdbc:mysql://devops-rds-second.c7iudllookzy.ap-northeast-2.rds.amazonaws.com:3306/devops?useSSL=false&serverTimezone=UTC&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8
     username: master
     password: ENC(ZC4mi7TZfj30yhG/KwbGSKoJQHEprP9v)
   mvc:
