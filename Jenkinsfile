@@ -35,7 +35,7 @@ aws s3 cp back.tar s3://landingproject/back.tar'''
         sh '''aws deploy create-deployment \\
     --application-name CRBS-codedeploy-app \\
     --deployment-config-name CodeDeployDefault.AllAtOnce \\
-    --deployment-group-name CRBS-API-deployment-group \\
+    --deployment-group-name $DG_NAME \\
     --s3-location bundleType="tar",bucket="landingproject",key=back.tar \\
     --file-exists-behavior "OVERWRITE"'''
       }
