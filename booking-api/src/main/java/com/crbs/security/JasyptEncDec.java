@@ -25,17 +25,17 @@ public class JasyptEncDec {
 	}
 
 	
-//	public static void main(String [] args) {
-//		StandardPBEStringEncryptor enc = new StandardPBEStringEncryptor(); 
-//		enc.setProvider(new BouncyCastleProvider());
-//		enc.setAlgorithm("PBEWithMD5AndDES");
-//		enc.setPassword("devops");
-//		
-//		String username = "master";
-//		String password = "12345678";
-//		
+	public static void main(String [] args) {
+		StandardPBEStringEncryptor enc = new StandardPBEStringEncryptor(); 
+		enc.setProvider(new BouncyCastleProvider());
+		enc.setAlgorithm("PBEWithMD5AndDES");
+		enc.setPassword("devops");
+		
+//		String username = "root";
+		String password = "team2team2";
+		
 //		System.out.println("encrypted username : " + enc.encrypt(username));
-//		System.out.println("encrypted password : " + enc.encrypt(password));
-//		
-//	}
+		System.out.println("encrypted password : " + enc.encrypt(password));
+		
+	}
 }
