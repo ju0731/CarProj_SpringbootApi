@@ -29,7 +29,10 @@ public class CarRepositoryImple implements CarRepository {
 	public int insertCarInfo(Car car) {
 //		JasyptEncDec enc = new JasyptEncDec();
 //		String encryptedCode = enc.encryptText(car.getCode());
-		return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
+		if(car.getCnt() < 0)
+			return -1;
+		else
+			return this.jdbcTemplate.update(CarSQLquery.INSERT_CAR_INFO, car.getCode(), car.getName(), car.getPrice(), car.getColor(), car.getFuel(), car.getDisplacement(), car.getSize(), car.getImageUrl(), car.getCnt());
 	}
 	
 	@Override

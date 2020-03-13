@@ -37,6 +37,8 @@ public class CarServiceImple implements CarService {
 		int result = carDao.insertCarInfo(car);
 		if (result == 1)
 			return 1;
+		else if (result == -1)
+			return -1;
 		else
 			return 0;
 	}

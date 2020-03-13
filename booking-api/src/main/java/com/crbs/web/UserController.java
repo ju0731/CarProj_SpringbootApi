@@ -2,6 +2,8 @@ package com.crbs.web;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ public class UserController {
 	
 	@Autowired
 	UserService userService;
-
+	
 	@CrossOrigin(origins="*")
 	@RequestMapping(value = "", method = RequestMethod.OPTIONS)
 	public ResponseEntity<Integer> optionBoard() {
@@ -71,7 +73,8 @@ public class UserController {
 			return new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
 		else
 			return new ResponseEntity<String>(id, headers,HttpStatus.CREATED);
-	}	
+	}
+	
 	@CrossOrigin(origins="*")
 	@RequestMapping(value = "/signin", method = RequestMethod.POST)
 	public ResponseEntity<Integer> login(@RequestBody User user){
@@ -84,6 +87,7 @@ public class UserController {
 		else
 			return new ResponseEntity<Integer>(login, headers, HttpStatus.OK);
 	}
+	
 	
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
