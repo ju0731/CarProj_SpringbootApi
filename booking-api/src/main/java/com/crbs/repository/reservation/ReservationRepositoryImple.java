@@ -27,10 +27,15 @@ public class ReservationRepositoryImple implements ReservationRepository {
 //		JasyptEncDec enc = new JasyptEncDec();
 //		String encryptedCustomerId = enc.encryptText(reservation.getCustomerId());
 //		String encryptedCarCode = enc.encryptText(reservation.getCarCode());
+		try {
+			this.jdbcTemplate.update(ReservationSQLquery.INSERT_RESERVATION, reservation.getCustomerId(),
+					reservation.getCarCode(), reservation.getStartDate(), reservation.getEndDate());
+
+			return this.subtractCarCnt(reservation.getCarCode());
+		} catch (Exception e) {
+			return 0;
+		}
 		
-		this.subtractCarCnt(reservation.getCarCode());
-		return this.jdbcTemplate.update(ReservationSQLquery.INSERT_RESERVATION, reservation.getCustomerId(),
-				reservation.getCarCode(), reservation.getStartDate(), reservation.getEndDate());
 	}
 
 	@Override
