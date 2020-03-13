@@ -20,7 +20,6 @@ public class ReservationServiceImple implements ReservationService {
 		if (result == 1)
 			return 1;
 		else {
-			reservationDao.addCarCnt(reservation.getCarCode());
 			return 0;
 		}
 	}
