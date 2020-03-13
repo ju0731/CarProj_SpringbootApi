@@ -1,4 +1,4 @@
-package com.crbs;
+package com.crbs.web;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.Matchers.any;

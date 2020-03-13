@@ -72,7 +72,7 @@ public class CrbsController {
 //		headers.add("A post Created - ", String.valueOf(car.getSize()));
 //		headers.add("A post Created - ", String.valueOf(car.getImageUrl()));
 //		headers.add("A post Created - ", String.valueOf(car.getCnt()));
-		if (i == 0)
+		if (i == 0 || i == -1)
 			return new ResponseEntity<Car>(HttpStatus.BAD_REQUEST);
 		else
 			return new ResponseEntity<Car>(car, headers, HttpStatus.CREATED);

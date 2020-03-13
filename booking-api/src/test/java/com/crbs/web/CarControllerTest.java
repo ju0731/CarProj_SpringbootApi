@@ -1,4 +1,4 @@
-package com.crbs;
+package com.crbs.web;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
@@ -32,55 +32,63 @@ public class CarControllerTest {
 
 	@Mock
 	private CarService carService;
-	
+
 	@InjectMocks
 	private CrbsController carController;
-	
+
 	private MockMvc mockMvc;
-	
+
 	@Before
 	public void setup() throws Exception {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(carController).build();
 	}
-	
+
 	@Test
-	public void createCarInfoTest() throws Exception {
-when(carService.registerCarInfo(any(Car.class))).thenReturn(1);
-		
+	public void createCarInfoSuccessTest() throws Exception {
+		when(carService.registerCarInfo(any(Car.class))).thenReturn(1);
+
 		mockMvc.perform(post("/v0.0.3/crbs/admins").contentType(MediaType.APPLICATION_JSON)
-				.content(" {\r\n" + 
-						"            \"code\": \"12가3456\",\r\n" + 
-						"            \"name\": \"new audi\",\r\n" + 
-						"            \"price\": 15000,\r\n" + 
-						"            \"color\": \"red\",\r\n" + 
-						"            \"fuel\": \"gasolin\",\r\n" + 
-						"            \"displacement\": 3500,\r\n" + 
-						"            \"size\": \"중형\",\r\n" + 
-						"            \"imageUrl\": null,\r\n" + 
-						"            \"cnt\": 9\r\n" + 
-						"        }").accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andDo(print());
-		
+				.content(" {\r\n" + "            \"code\": \"12가3456\",\r\n" + "            \"name\": \"new audi\",\r\n"
+						+ "            \"price\": 15000,\r\n" + "            \"color\": \"red\",\r\n"
+						+ "            \"fuel\": \"gasolin\",\r\n" + "            \"displacement\": 3500,\r\n"
+						+ "            \"size\": \"중형\",\r\n" + "            \"imageUrl\": null,\r\n"
+						+ "            \"cnt\": 9\r\n" + "        }")
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andDo(print());
+
 	}
-	
+
+	@Test
+	public void createCarInfoFailTest() throws Exception {
+		when(carService.registerCarInfo(any(Car.class))).thenReturn(1);
+
+		mockMvc.perform(post("/v0.0.3/crbs/admins").contentType(MediaType.APPLICATION_JSON)
+				.content(" {\r\n" + "            \"code\": \"12가3456\",\r\n" + "            \"name\": \"new audi\",\r\n"
+						+ "            \"price\": 15000,\r\n" + "            \"color\": \"red\",\r\n"
+						+ "            \"fuel\": \"gasolin\",\r\n" + "            \"displacement\": 3500,\r\n"
+						+ "            \"size\": \"중형\",\r\n" + "            \"imageUrl\": null,\r\n"
+						+ "            \"cnt\": 9\r\n" + "        }")
+				.accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated()).andDo(print());
+
+	}
+
 	@Test
 	public void deleteCarInfoTest() throws Exception {
 		when(carService.removeCarInfoByCode("CRBS0001")).thenReturn(1);
 		logger.info("delete - i : {}", carService.removeCarInfoByCode("CRBS0001"));
 
 	}
-	
+
 	@Test
 	public void updateCarInfoTest() throws Exception {
 		Car c = new Car("CRBS0001", "new audi", 15000, "red", "gasolin", 3500, "중형", null, 9);
 		when(carService.renewCarInfoByCode(c, "CRBS0001")).thenReturn(1);
-		
-		mockMvc.perform(MockMvcRequestBuilders.put("/v0.0.3/crbs/admin/{code}", "CRBS0001").contentType(MediaType.APPLICATION_JSON)
-			.content("  {\r\n" + 
-					"            \"name\": \"new audi2\",\r\n" + 
-					"            \"price\": 16000\r\n" + 
-					"        }")
-			.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isCreated());
+
+		mockMvc.perform(MockMvcRequestBuilders.put("/v0.0.3/crbs/admin/{code}", "CRBS0001")
+				.contentType(MediaType.APPLICATION_JSON)
+				.content("  {\r\n" + "            \"name\": \"new audi2\",\r\n" + "            \"price\": 16000\r\n"
+						+ "        }")
+				.accept(MediaType.APPLICATION_JSON)).andDo(print()).andExpect(status().isCreated());
 	}
-	
+
 }

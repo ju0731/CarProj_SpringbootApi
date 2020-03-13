@@ -17,18 +17,20 @@ public class ReservationServiceImple implements ReservationService {
 	@Override
 	public int registerReservation(Reservation reservation) {
 		int result = reservationDao.insertReservation(reservation);
-		if(result == 1)
+		if (result == 1)
 			return 1;
-		else
+		else {
+			reservationDao.addCarCnt(reservation.getCarCode());
 			return 0;
+		}
 	}
-	
+
 	@Override
 	public int getNumOfReservation() {
 		int result = reservationDao.getNumOfReservation();
 		return result;
 	}
-	
+
 	@Override
 	public List<Reservation> showReservationList() {
 		List<Reservation> reservation;
@@ -39,5 +41,6 @@ public class ReservationServiceImple implements ReservationService {
 		}
 		return reservation;
 	}
+
 
 }
