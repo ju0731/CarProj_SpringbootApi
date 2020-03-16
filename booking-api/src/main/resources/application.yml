@@ -11,9 +11,9 @@ spring:
       force: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://crbs-rds-instance.c7iudllookzy.ap-northeast-2.rds.amazonaws.com:3306/devops?useSSL=false&serverTimezone=UTC&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8&autoReconnection=true
-    username: root
-    password: ENC(SDaptU+Z1npYaatCvHRscUYhUAQhX1aq)
+    url: jdbc:mysql://devops-rds-third.c7iudllookzy.ap-northeast-2.rds.amazonaws.com:3306/devops?useSSL=false&serverTimezone=UTC&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8&autoReconnection=true
+    username: master
+    password: ENC(os18kZ+6V3nXF/POauA9lxvcGVmL2mxT)
     dbcp2:
       test-on-borrow: true
       validation-query: select 1

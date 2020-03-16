@@ -32,7 +32,7 @@ public class JasyptEncDec {
 		enc.setPassword("devops");
 		
 //		String username = "root";
-		String password = "team2team2";
+		String password = "12345678";
 		
 //		System.out.println("encrypted username : " + enc.encrypt(username));
 		System.out.println("encrypted password : " + enc.encrypt(password));
