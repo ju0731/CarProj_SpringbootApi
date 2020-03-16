@@ -1,5 +1,5 @@
 #encoding
-#database : ssh 접속 - ubuntu@52.78.161.155
+#database : ssh 접속 - ubuntu@
 #database : mysql -h devops-rds.c7iudllookzy.ap-northeast-2.rds.amazonaws.com -u master -p
 #static resources
 
@@ -11,7 +11,7 @@ spring:
       force: true
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://crbs-rds-instance.c7iudllookzy.ap-northeast-2.rds.amazonaws.com:3306/devops?useSSL=false&serverTimezone=UTC&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8
+    url: jdbc:mysql://crbs-rds-instance.c7iudllookzy.ap-northeast-2.rds.amazonaws.com:3306/devops?useSSL=false&serverTimezone=UTC&useCursors=false&sendStringParametersAsUnicode=false&characterEncoding=UTF8&autoReconnection=true
     username: root
     password: ENC(SDaptU+Z1npYaatCvHRscUYhUAQhX1aq)
   mvc:
