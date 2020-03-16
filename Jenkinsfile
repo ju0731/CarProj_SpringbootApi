@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git cloning') {
       steps {
-        git(url: 'https://github.com/bsp-incubation/booking-api.git', branch: 'master', credentialsId: 'boyeon', poll: true)
+        git(url: 'https://github.com/bsp-incubation/booking-api.git', branch: 'master')
       }
     }
 
