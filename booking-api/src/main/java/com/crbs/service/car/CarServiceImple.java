@@ -26,28 +26,11 @@ public class CarServiceImple implements CarService {
 		return car;
 	}
 	
-//	@Override
-//	public List<Car> showEntireCarList() {
-//		List<Car> car;
-//		try {
-//			car = carDao.getEntireCarList();
-//		} catch (Exception e) {
-//			car = new ArrayList<Car>();
-//		}
-//		return car;
-//	}
-	
 	@Override
 	public int getNumOfAvailableCar() {
 		int result = carDao.getNumOfAvailableCar();
 		return result;
 	}
-	
-//	@Override
-//	public int getNumOfEntireCar() {
-//		int result = carDao.getNumOfEntireCar();
-//		return result;
-//	}
 
 	@Override
 	public int registerCarInfo(Car car) {

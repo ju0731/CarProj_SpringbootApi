@@ -7,7 +7,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.crbs.model.Car;
-import com.crbs.security.JasyptEncDec;
 
 @Repository
 public class CarRepositoryImple implements CarRepository {
@@ -20,20 +19,10 @@ public class CarRepositoryImple implements CarRepository {
 		return this.jdbcTemplate.query(CarSQLquery.SELECT_AVAILABLE_CAR, new CarSelectionMapper());
 	}
 	
-//	@Override
-//	public List<Car> getEntireCarList() {
-//		return this.jdbcTemplate.query(CarSQLquery.SELECT_ENTIRE_CAR, new CarSelectionMapper());
-//	}
-	
 	@Override
 	public int getNumOfAvailableCar() {
 		return this.jdbcTemplate.queryForObject(CarSQLquery.SELECT_CNT_AVAILABLE_CAR, int.class);
 	}
-	
-//	@Override
-//	public int getNumOfEntireCar() {
-//		return this.jdbcTemplate.queryForObject(CarSQLquery.SELECT_CNT_ENTIRE_CAR, int.class);
-//	}
 	
 	@Override
 	public int insertCarInfo(Car car) {

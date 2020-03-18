@@ -45,24 +45,6 @@ public class CrbsController {
 		hashmap.put("cntListItem", cntListItem);
 		return new ResponseEntity<HashMap<String, Object>>(hashmap, headers, HttpStatus.OK);
 	}
-	
-	
-	/* Demo 변경 사항
-	@CrossOrigin(origins = "*")
-	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ResponseEntity<HashMap<String, Object>> getEntireCarList() {
-		logger.info("getEntireCarList() controller called");
-		HttpHeaders headers = new HttpHeaders();
-		headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS");
-		List<Car> car = carService.showEntireCarList();
-		int cntListItem = carService.getNumOfEntireCar();
-
-		HashMap<String, Object> hashmap = new HashMap<>();
-		hashmap.put("car", car);
-		hashmap.put("cntListItem", cntListItem);
-		return new ResponseEntity<HashMap<String, Object>>(hashmap, headers, HttpStatus.OK);
-	}
-	*/
 
 	@CrossOrigin(origins = "*")
 	@RequestMapping(value = "/admins", method = RequestMethod.POST, produces = "application/json")
