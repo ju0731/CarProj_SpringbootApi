@@ -60,7 +60,7 @@ public class MyBookingController {
 		String result = myBookingService.deleteMyBooking(customer_id, car_code);
 		logger.info(result);
 		
-		if(result.equals("Success"))
+		if(result.equals("SUCCESS"))
 			return new ResponseEntity<String>("Success",headers,HttpStatus.OK);
 		else
 			return new ResponseEntity<String>(result,headers,HttpStatus.BAD_REQUEST);
