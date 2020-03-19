@@ -14,7 +14,7 @@ import com.crbs.repository.mybooking.MyBookingRepositoryImple;
 
 @Service
 public class MyBookingServiceImple implements MyBookingService {
-	private static final Logger logger = LoggerFactory.getLogger(MyBookingServiceImple.class);
+	private static final Logger logger = LoggerFactory.getLogger(MyBookingServiceImple2.class);
 	
 	@Autowired
 	private MyBookingRepositoryImple mbDAO;
@@ -45,10 +45,14 @@ public class MyBookingServiceImple implements MyBookingService {
 			if(compare<0) {
 				mbDAO.deleteMyBooking(customer_id, car_code);
 				mbDAO.updateCnt(car_code);
+				logger.info("성공");
 				return"SUCCESS";	
 			}
+			
+			logger.info("기간 만료");
 			return"expiration : 예약 취소 가능 기간이 만료되었습니다.";
 		} catch (Exception e) {
+			logger.info(e.toString());
 			return e.toString();
 		}
 	}
