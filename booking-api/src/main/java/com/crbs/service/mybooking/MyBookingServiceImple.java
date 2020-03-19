@@ -14,7 +14,7 @@ import com.crbs.repository.mybooking.MyBookingRepositoryImple;
 
 @Service
 public class MyBookingServiceImple implements MyBookingService {
-	private static final Logger logger = LoggerFactory.getLogger(MyBookingServiceImple2.class);
+	private static final Logger logger = LoggerFactory.getLogger(MyBookingServiceImple.class);
 	
 	@Autowired
 	private MyBookingRepositoryImple mbDAO;
