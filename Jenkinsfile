@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Git cloning') {
       steps {
-        git(url: 'https://github.com/bsp-incubation/booking-api.git', branch: 'master', credentialsId: 'boyeon')
+        git(url: 'https://github.com/bsp-incubation/booking-api.git', branch: 'master', credentialsId: 'boyeon', poll: true)
       }
     }
 
@@ -46,6 +46,6 @@ aws s3 cp back.tar s3://landingproject/back.tar'''
 
   }
   environment {
-    DG_NAME = 'CRBS-API-deployment-group'
+    DG_NAME = 'CRBS-API-deployment-group1'
   }
 }
