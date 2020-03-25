@@ -31,6 +31,9 @@ aws s3 cp back.tar s3://landingproject/back.tar'''
     }
 
     stage('Create Deployment') {
+      when {
+        branch 'master'
+      }
       steps {
         sh '''aws deploy create-deployment \\
     --application-name CRBS-codedeploy-app \\
