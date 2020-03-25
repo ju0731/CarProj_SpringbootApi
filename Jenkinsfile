@@ -32,7 +32,7 @@ aws s3 cp back.tar s3://landingproject/back.tar'''
 
     stage('Create Deployment') {
       when {
-        branch 'boyeon'
+        branch 'boyeon2'
       }
       steps {
         sh '''aws deploy create-deployment \\
