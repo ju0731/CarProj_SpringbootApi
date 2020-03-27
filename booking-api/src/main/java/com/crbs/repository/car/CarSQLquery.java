@@ -1,7 +1,7 @@
 package com.crbs.repository.car;
 
 public class CarSQLquery {
-	public static final String SELECT_AVAILABLE_CAR = "select * from CAR"; // 현재 예약가능한 차량정보 리스트 출력
+	public static final String SELECT_AVAILABLE_CAR = "select * from CAR where cnt!=0"; // 현재 예약가능한 차량정보 리스트 출력
 	
 	public static final String SELECT_CNT_AVAILABLE_CAR = "select COUNT(*) from CAR where cnt!=0";
 
